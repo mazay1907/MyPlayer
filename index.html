@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My player</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+
+<div class="conteiner cliarfix">
+
+    <div id="btn" class="btn-play "><span class="glyphicon glyphicon-play"></span></div>
+    <div  class="btn-change">
+        <span id="prev" class="glyphicon glyphicon glyphicon-backward icons"></span>
+        <span id="next" class="glyphicon glyphicon-forward icons"></span>
+        <span id="minus-time" class="glyphicon glyphicon-fast-backward icons"></span>
+        <span id="plus-time" class="glyphicon glyphicon-fast-forward icons"></span>
+        <span id="current-time" class="icons"></span>
+        <div id="progress-bar">
+            <div id="curent-progress" style=""></div>
+            <span id="progr-bar-point" class=" glyphicon glyphicon-triangle-bottom"></span>
+        </div>
+    </div>
+    <div class="music-name"></div>
+    <div class="volume-buttons">
+        <span id="plus-volume" class="glyphicon glyphicon-volume-up icons"></span>
+        <span id="minus-volume" class="glyphicon glyphicon-volume-down icons"></span>
+        <span id="mute" class="glyphicon glyphicon-volume-off icons"></span>
+    </div>
+</div>
+
+<div class="song-list">
+    <ul id="song-list1">
+    </ul>
+
+</div>
+
+<button id="test">111</button>
+<script src="js/script1.js" type="text/javascript"></script>
+<script src="js/dragndrop.js" type="text/javascript"></script>
+
+</body>
+</html>

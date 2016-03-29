@@ -1,0 +1,130 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.cliarfix::after {
+    content: "";
+    clear:both;
+    display: block;
+}
+body {
+    margin:0;
+    font-family: 'Arial', sans-serif;
+    width:100%;
+    /*line-height: 1.8;*/
+}
+.conteiner {
+    position: relative;
+    width: 800px;
+    height: 55px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background-color: #d7d7d7;
+}
+
+.btn-play {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    /*background-color: #000;*/
+    /*border-radius: 50%;*/
+    height: 50px;
+    /*border: #134900 solid 2px;*/
+    text-align: center;
+
+}
+.glyphicon-play, .glyphicon-pause {
+    top: 9px !important;
+    font-size: 35px;
+    color: #051645;
+}
+
+.icons {
+    /*top: 1px !important;*/
+    font-size: 18px;
+    color: #000;
+    padding:2px;
+}
+.icons span {
+    float:left;
+}
+
+.btn-change {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    /*width: 30px;*/
+    height: 30px;
+    text-align: center;
+}
+
+.music-name {
+    float:right;
+    padding-right:10px;
+
+}
+
+.volume {
+    float:left;
+    content: "";
+    width: 20px;
+    height: 100px;
+    background-color: #000000;
+    outline: #cc5d13 solid 1px;
+}
+.volume-buttons {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    height: 30px;
+    text-align: center;
+}
+
+.selected {
+    background-color: darkgray;
+}
+span:hover {
+    cursor: pointer;
+    background-color: darkgray;
+}
+
+.song-list {
+    width: 600px;
+    margin: 1px auto;
+    background-color: #dcdcdc;
+}
+ul {
+    margin-left: 5px;
+    padding-left: 5px;
+}
+li {
+    list-style-type: none; 
+    margin: 3px;
+    font-size: 16px;
+}
+#progress-bar {
+    background-color: darkgrey;
+    position: relative;
+    height:20px;
+    width:300px;
+    padding: 0;
+    float:left;
+}
+#curent-progress {
+    background-color: #f51b26;
+    height:20px;
+    width:0;
+    padding: 0;
+    border-right: #000 solid 1px;
+
+}
+
+#progr-bar-point {
+    position: absolute;
+    top:-10px;
+    left:-6.3px;
+
+}
