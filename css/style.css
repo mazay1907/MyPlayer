@@ -105,18 +105,30 @@ li {
     margin: 3px;
     font-size: 16px;
 }
+#progress-bar-conteiner {
+    /*background-color: darkgrey;*/
+    position: relative;
+    /*top: -10px;*/
+    margin-top: -10px;
+    height:30px;
+    width:300px;
+    padding: 0;
+    float:left;
+    outline: red solid 1px;
+}
 #progress-bar {
     background-color: darkgrey;
     position: relative;
     height:20px;
     width:300px;
+    margin-top: 10px;
     padding: 0;
     float:left;
 }
 #curent-progress {
     background-color: #f51b26;
     height:20px;
-    width:0;
+    width: 0;
     padding: 0;
     border-right: #000 solid 1px;
 
@@ -124,7 +136,10 @@ li {
 
 #progr-bar-point {
     position: absolute;
-    top:-10px;
-    left:-6.3px;
+    top:10px;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+    background-color: transparent;
 
 }

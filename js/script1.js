@@ -28,11 +28,13 @@ var btn = document.getElementById("btn"),
     currentTimeElem = document.getElementById("current-time"),
     curentProgress = document.getElementById("curent-progress"),
     progressBarPoint = document.getElementById("progr-bar-point"),
+//progressBarPointLeftPos = ,
     currentSongTime,  // time was played of current song (min:sec)
     progress,         // time was played of current song (px)
     currentTimeSong;  // time was played of current song (sec)
 
-
+progressBarPoint.style.left = curentProgress.getBoundingClientRect().right - progressBarPoint.offsetWidth / 2 - 1 + "px";
+console.log("1 " + progressBarPoint.style.left);
 for (var x = 1; x < 5; x++){
     var li = document.createElement("li");
     li.innerHTML = musicName[x];
@@ -50,10 +52,12 @@ function playMusic(){
             playlist[trackNum].addEventListener("timeupdate", function() {
                 timeInMinutes(trackNum);
                 currentTimeElem.innerHTML = currentSongTime;
-                curentProgress.style.width = progress  + "px";
-                if (progress > 0) {
-                    progressBarPoint.style.left = progress - 7.8 + "px";
-                }
+                curentProgress.style.width = progress   + "px";
+                progressBarPoint.style.left = curentProgress.getBoundingClientRect().right - progressBarPoint.offsetWidth / 2 - 1+ "px";
+                console.log(progress + " " + curentProgress.style.width + " " + progressBarPoint.style.left);
+                /*if (progress > 0) {
+                 progressBarPoint.style.left = (progress - 7.8 ) + "px"; /// to do
+                 }*/
             });
             setInterval(setTimeOfEnd, 3000);
             break;
@@ -75,7 +79,7 @@ function timeInMinutes(trackNum) {
         sec = "0" + sec;
     }
     currentSongTime = min + ':' + sec;
-    progress = 300*currentTimeSong/duration;
+    progress = (300*currentTimeSong/duration).toFixed(1);
 }
 // change to next song
 function nextSound() {
@@ -187,18 +191,20 @@ function checkKey(e) {
     }
 }
 
-progressBarPoint.onmousedown = function (e) {
-    console.log("test");
-    dragObject = this;
-    console.log(dragObject);
+/*
+ progressBarPoint.onmousedown = function (e) {
+ console.log("test");
+ dragObject = this;
+ console.log(dragObject);
 
-    return false;
-};
+ return false;
+ };
 
-document.onmouseup = function() {
-    dragObject = null;
-};
+ document.onmouseup = function() {
+ dragObject = null;
+ };
 
+ */
 
 
 btn.addEventListener("click",  playMusic);
