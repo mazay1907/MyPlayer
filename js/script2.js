@@ -26,11 +26,14 @@ var btn = document.getElementById("btn"),
     minusVolume = document.getElementById("minus-volume"),
     songList = document.getElementById("song-list1"),
     currentTimeElem = document.getElementById("current-time"),
+    bar = document.getElementById("progress-bar"),
     curentProgress = document.getElementById("curent-progress"),
+    progressSpan = document.getElementById("progr-bar-point"),
     test = document.getElementById("test"),
     currentSongTime,
     progress,
     currentTime;
+console.log(progressSpan.offsetWidth);
 for (var x = 1; x < 5; x++){
     var li = document.createElement("li");
     li.innerHTML = musicName[x];
@@ -192,3 +195,31 @@ plusTime.addEventListener("click", forwardSound);
 minusTime.addEventListener("click", backSound);
 minusVolume.addEventListener("click", minusVolumeControl);
 plusVolume.addEventListener("click", plusVolumeControl);
+
+
+
+bar.onmousedown = function(e) {
+    changeCurrentProgress(e);
+    function changeCurrentProgress(e) {
+    var leftOfElem = bar.getBoundingClientRect().left,
+        onClickPoss = e.pageX,
+        newWidthOfCurrProgress = onClickPoss - leftOfElem;
+        if (newWidthOfCurrProgress > 0 && newWidthOfCurrProgress <= 300) {
+            curentProgress.style.width = newWidthOfCurrProgress + "px";
+            playlist[trackNum].currentTime = (newWidthOfCurrProgress * playlist[trackNum].duration.toFixed()) / 300;
+            }
+
+    }
+    document.onmousemove = function(e) {
+        changeCurrentProgress(e);
+    };
+    document.ondragstart = function() {
+        return false;
+    };
+    document.onmouseup = function() {
+        document.onmousemove = null;
+        bar.onmouseup = null;
+    } 
+};
+
+

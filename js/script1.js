@@ -123,7 +123,9 @@ function isPausePlay(trackNum,prevTrackNum) {
 // 5 sec to current song
 function forwardSound() {
     var curTime = playlist[trackNum].currentTime + 5.0;
-    playlist[trackNum].currentTime = curTime;
+    playlist[trackNum].currentTime += 5;
+    console.log(playlist[trackNum].currentTime);
+    console.log(curTime);
 }
 function backSound() {
     var curTime = playlist[trackNum].currentTime - 5.0;
