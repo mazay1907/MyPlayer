@@ -41,7 +41,7 @@ ball.onmousedown = function(e) { // 1. отследить нажатие
             curentProgress.style.width =widthProgBarSize + 'px';
 
         }
-        ball.style.top = topOfElem + 'px';
+        //ball.style.top = topOfElem + 'px';
         Name(e);
     }
     // 3, перемещать по экрану
