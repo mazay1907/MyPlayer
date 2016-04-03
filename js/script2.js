@@ -219,7 +219,7 @@ bar.onmousedown = function(e) {
     document.onmouseup = function() {
         document.onmousemove = null;
         bar.onmouseup = null;
-    }
+    } 
 };
 
 
