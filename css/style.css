@@ -124,6 +124,7 @@ li {
 
 }
 #curent-progress {
+    position:relative;
     background-color: #f51b26;
     float: left;
     height: 20px;
@@ -134,9 +135,10 @@ li {
 }
 
 #progr-bar-point {
-    float: left;
+    position:absolute;
+    right:-7px;
+    top: -10px;
     padding: 0;
-    margin: -11px 0 0 -8px;
     z-index: 1000;
     background-color: transparent;
 }
