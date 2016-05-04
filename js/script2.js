@@ -1,7 +1,7 @@
 /**
  * Created by mazay1907 on 3/25/2016.
  */
-
+/*
 var playlist = [],
     trackNum = 0,
     musicName = {1:"<b>Денис Майданов</b> - Территория Сердца (Дуэт С Лолитой)",
@@ -9,9 +9,30 @@ var playlist = [],
         3:"<b>Маша Кольцова</b> - Я Не Уйду",
         4:"<b>A - Studio</b> - Вот она любовь"};
 for (var _songName = 1; _songName < 5; _songName++){
-    myaudio = new Audio('mp3/' + _songName + '.mp3');
+    //myaudio = new Audio('mp3/' + _songName + '.mp3');
+    myaudio = new Audio("https://freemusicarchive.org/music/listen/f63d486c7fcfcc2afd1275715830f7b7029c5c39");
+    //myaudio = new Audio("https://freemusicarchive.org/music/Decoder_Magazine/Akpatok/Two_Winters_Two_Springs/Akpatok_-_03_-_Tree_and_Wind.mp3");
     playlist[_songName - 1] = myaudio;
+}*/
+songArray.onload = function() {
+console.log("111" + songArray);};
+var playlist = [],
+    trackNum = 0,
+    musicName = {};
+
+for (var _songName = 0; _songName < 10; _songName++){
+    var myaudio = new Audio(songArray.songListenUrl[_songName]);
+    //myaudio = new Audio("https://freemusicarchive.org/music/listen/f63d486c7fcfcc2afd1275715830f7b7029c5c39");
+    //myaudio = new Audio("https://freemusicarchive.org/music/Decoder_Magazine/Akpatok/Two_Winters_Two_Springs/Akpatok_-_03_-_Tree_and_Wind.mp3");
+    playlist[_songName] = myaudio;
+    musicName[_songName] = "<b>" + songArray.artistName[_songName] + "</b>" + songArray.songName[_songName];
 }
+/*
+songArray = {
+    songDownloadUrl : [],
+    songListenUrl : [],
+    songName : [],
+    artistName : []}*/
 
 
 
@@ -221,5 +242,4 @@ bar.onmousedown = function(e) {
         bar.onmouseup = null;
     } 
 };
-
 
