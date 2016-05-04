@@ -62,7 +62,7 @@ oReq.onerror = function() {
 };
 
 
-console.log (x.songArray);
+console.log (songArray);
 
 
 //jsonp
