@@ -47,6 +47,7 @@ oReq.onload = function() {
             artistName : []
         },
         max = objOfParam.aTracks.length;
+        //max = 10;
     for (var i=0; i<max; i++) {
         var trackId = objOfParam.aTracks[i].track_file_url.slice(44);
         songArray.songDownloadUrl[i] = trackId;
@@ -55,14 +56,13 @@ oReq.onload = function() {
         songArray.songName[i] = objOfParam.aTracks[i].track_title;
     }
 
-
+    addPlaylist(songArray);
     };
 oReq.onerror = function() {
     alert('Woops, there was an error making the request.');
 };
 
 
-console.log (songArray);
 
 
 //jsonp
