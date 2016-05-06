@@ -3,21 +3,26 @@
  */
 
 function addPlaylist(songArray) {
-var playlist = [],
-    trackNum = 0,
-    num = Math.floor((Math.random() * songArray.songListenUrl.length-20) + 1);
-    musicName = {};
+var trackNum = 0,
+    num = Math.floor((Math.random() * songArray.songListenUrl.length-10) + 1),
+    musicArr = {
+        playlist : [],
+        musicName : [],
+        albumImage : []
+    };
 
 for (var _songName = 0; _songName < 10; _songName++){
     var myaudio = new Audio(songArray.songListenUrl[_songName]);
-    playlist[_songName] = myaudio;
-    musicName[_songName] = "<b>" + songArray.artistName[_songName+num] + "</b> " + songArray.songName[_songName+num];
+    musicArr.playlist[_songName] = myaudio;
+    musicArr.musicName[_songName] = "<b>" + songArray.artistName[_songName+num] + " -</b> " + songArray.songName[_songName+num];
+    //musicArr.albumImage[_songName] = songArray.albumImageFile[_songName+num]
 }
-        playerOptions(playlist, musicName, trackNum);
+    playerOptions(musicArr, trackNum);
+    console.log(musicArr);
 }
 
 
-function playerOptions(playlist, musicName, trackNum) {
+function playerOptions(musicArr, trackNum) {
 var btn = document.getElementById("btn"),
     prev = document.getElementById("prev"),
     next = document.getElementById("next"),
@@ -35,34 +40,26 @@ var btn = document.getElementById("btn"),
     test = document.getElementById("test"),
     currentSongTime,
     progress,
-    currentTime;
-
-    Object.size = function(obj) {
-        var size = 0, key;
-        for (key in obj) {
-            if (obj.hasOwnProperty(key)) size++;
-        }
-        return size;
-    };
-
-    var size = Object.size(musicName);
-    for (var x = 0; x < size; x++) {
+    currentTime,
+    size = musicArr.musicName.length;
+    for (var _songName = 0; _songName < size; _songName++) {
         var li = document.createElement("li"),
-            qaz = x+1;
-        li.innerHTML = qaz + " " + musicName[x];
+            numberOfSong = _songName+1;
+        li.innerHTML = numberOfSong + " " + musicArr.musicName[_songName];
         songList.appendChild(li);
     }
 
 // Play music function and change play btn name
     function playMusic() {
-        switch (playlist[trackNum].paused) {
+        switch (musicArr.playlist[trackNum].paused) {
             case true:
                 console.log(trackNum);
-                playlist[trackNum].play();
-                nameField.innerHTML = musicName[trackNum];
+                musicArr.playlist[trackNum].play();
+                nameField.innerHTML = musicArr.musicName[trackNum];
                 songList.getElementsByTagName("li")[trackNum].className += " selected";
                 btn.firstChild.className = "glyphicon glyphicon-pause";
-                playlist[trackNum].addEventListener("timeupdate", function () {
+                //document.getElementById("album-img").innerHTML = "<img src=" + 'https://freemusicarchive.org/file/' +  musicArr.albumImage[trackNum] + ">";
+                musicArr.playlist[trackNum].addEventListener("timeupdate", function () {
                     timeInMinutes(trackNum);
                     currentTimeElem.innerHTML = currentSongTime;
                     curentProgress.style.width = progress + "px";
@@ -73,15 +70,15 @@ var btn = document.getElementById("btn"),
                 setInterval(setTimeOfEnd, 3000);
                 break;
             default:
-                playlist[trackNum].pause();
+                musicArr.playlist[trackNum].pause();
                 btn.firstChild.className = "glyphicon glyphicon-play";
                 break;
         }
     }
 
     function timeInMinutes(trackNum) {
-        currentTime = playlist[trackNum].currentTime.toFixed();
-        var duration = playlist[trackNum].duration.toFixed(),
+        currentTime = musicArr.playlist[trackNum].currentTime.toFixed();
+        var duration = musicArr.playlist[trackNum].duration.toFixed(),
             min = Math.floor(currentTime / 60),
             sec = Math.floor(currentTime % 60);
         if (min < 10) {
@@ -97,12 +94,12 @@ var btn = document.getElementById("btn"),
 // change to next song
     function nextSound() {
         var prevTrackNum = trackNum;
-        switch (trackNum == playlist.length - 1) {
+        switch (trackNum == musicArr.playlist.length - 1) {
             case false:
                 trackNum = trackNum + 1;
                 break;
             case true:
-                prevTrackNum = playlist.length - 1;
+                prevTrackNum = musicArr.playlist.length - 1;
                 trackNum = 0;
         }
         songList.getElementsByTagName("li")[prevTrackNum].className = "";
@@ -117,7 +114,7 @@ var btn = document.getElementById("btn"),
         }
         if (trackNum == -1) {
             prevTrackNum = 0;
-            trackNum = playlist.length - 1;
+            trackNum = musicArr.playlist.length - 1;
         }
         songList.getElementsByTagName("li")[prevTrackNum].className = "";
         isPausePlay(trackNum, prevTrackNum);
@@ -126,8 +123,8 @@ var btn = document.getElementById("btn"),
 
 // paused previous song
     function isPausePlay(trackNum, prevTrackNum) {
-        if (playlist[trackNum].paused == true) {
-            playlist[prevTrackNum].pause();
+        if (musicArr.playlist[trackNum].paused == true) {
+            musicArr.playlist[prevTrackNum].pause();
 
         }
         playMusic();
@@ -135,18 +132,18 @@ var btn = document.getElementById("btn"),
 
 // 5 sec to current song
     function forwardSound() {
-        var curTime = playlist[trackNum].currentTime + 5.0;
-        playlist[trackNum].currentTime = curTime;
+        var curTime = musicArr.playlist[trackNum].currentTime + 5.0;
+        musicArr.playlist[trackNum].currentTime = curTime;
     }
 
     function backSound() {
-        var curTime = playlist[trackNum].currentTime - 5.0;
-        playlist[trackNum].currentTime = curTime;
+        var curTime = musicArr.playlist[trackNum].currentTime - 5.0;
+        musicArr.playlist[trackNum].currentTime = curTime;
     }
 
 // check the end of song
     function setTimeOfEnd() {
-        var status = playlist[trackNum].ended;
+        var status = musicArr.playlist[trackNum].ended;
         if (status == true) {
             nextSound();
         }
@@ -154,34 +151,34 @@ var btn = document.getElementById("btn"),
 
 // Mute volume
     function MuteBtnOnOff() {
-        switch (playlist[trackNum].muted) {
+        switch (musicArr.playlist[trackNum].muted) {
             case false:
-                playlist[trackNum].muted = true;
+                musicArr.playlist[trackNum].muted = true;
                 mute.className += " selected";
                 break;
             default:
-                playlist[trackNum].muted = false;
+                musicArr.playlist[trackNum].muted = false;
                 mute.className = "glyphicon glyphicon-volume-off icons";
                 break;
         }
     }
 
     function plusVolumeControl() {
-        var volume = playlist[trackNum].volume;
+        var volume = musicArr.playlist[trackNum].volume;
         if (volume <= 0.9) {
             volume += 0.1;
-            for (var i = 0; i < playlist.length; i++) {
-                playlist[i].volume = volume;
+            for (var i = 0; i < musicArr.playlist.length; i++) {
+                musicArr.playlist[i].volume = volume;
             }
         }
     }
 
     function minusVolumeControl() {
-        var volume = playlist[trackNum].volume;
+        var volume = musicArr.playlist[trackNum].volume;
         if (volume >= 0.1) {
             volume -= 0.1;
-            for (var i = 0; i < playlist.length; i++) {
-                playlist[i].volume = volume;
+            for (var i = 0; i < musicArr.playlist.length; i++) {
+                musicArr.playlist[i].volume = volume;
             }
         }
     }
@@ -225,7 +222,7 @@ var btn = document.getElementById("btn"),
                     newWidthOfCurrProgress = onClickPoss - leftOfElem;
                 if (newWidthOfCurrProgress > 0 && newWidthOfCurrProgress <= 300) {
                     curentProgress.style.width = newWidthOfCurrProgress + "px";
-                    playlist[trackNum].currentTime = (newWidthOfCurrProgress * playlist[trackNum].duration.toFixed()) / 300;
+                    musicArr.playlist[trackNum].currentTime = (newWidthOfCurrProgress * musicArr.playlist[trackNum].duration.toFixed()) / 300;
                 }
 
             }

@@ -13,7 +13,8 @@ oReq.onload = function() {
             songDownloadUrl : [],
             songListenUrl : [],
             songName : [],
-            artistName : []
+            artistName : [],
+            albumImageFile : []
         },
         max = objOfParam.aTracks.length;
     for (var i=0; i<max; i++) {
@@ -22,8 +23,9 @@ oReq.onload = function() {
         songArray.songListenUrl[i] = "https://freemusicarchive.org/music/listen/" + trackId;
         songArray.artistName[i] = objOfParam.aTracks[i].artist_name;
         songArray.songName[i] = objOfParam.aTracks[i].track_title;
+        songArray.albumImageFile[i] = objOfParam.aTracks[i].album_image_file
     }
-
+    console.log( objOfParam.aTracks[5]);
     addPlaylist(songArray);
     };
 oReq.onerror = function() {
