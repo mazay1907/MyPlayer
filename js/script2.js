@@ -1,34 +1,17 @@
 /**
  * Created by mazay1907 on 3/25/2016.
  */
-/*
-var playlist = [],
-    trackNum = 0,
-    musicName = {1:"<b>Денис Майданов</b> - Территория Сердца (Дуэт С Лолитой)",
-        2:"<b>Лицей</b> - Фотография",
-        3:"<b>Маша Кольцова</b> - Я Не Уйду",
-        4:"<b>A - Studio</b> - Вот она любовь"};
-for (var _songName = 1; _songName < 5; _songName++){
-    //myaudio = new Audio('mp3/' + _songName + '.mp3');
-    myaudio = new Audio("https://freemusicarchive.org/music/listen/f63d486c7fcfcc2afd1275715830f7b7029c5c39");
-    //myaudio = new Audio("https://freemusicarchive.org/music/Decoder_Magazine/Akpatok/Two_Winters_Two_Springs/Akpatok_-_03_-_Tree_and_Wind.mp3");
-    playlist[_songName - 1] = myaudio;
-}*/
+
 function addPlaylist(songArray) {
-console.log(songArray);
 var playlist = [],
     trackNum = 0,
+    num = Math.floor((Math.random() * songArray.songListenUrl.length-20) + 1);
     musicName = {};
 
-for (var _songName = 0; _songName < 20; _songName++){
+for (var _songName = 0; _songName < 10; _songName++){
     var myaudio = new Audio(songArray.songListenUrl[_songName]);
-    //myaudio = new Audio("https://freemusicarchive.org/music/listen/f63d486c7fcfcc2afd1275715830f7b7029c5c39");
-    //myaudio = new Audio("https://freemusicarchive.org/music/Decoder_Magazine/Akpatok/Two_Winters_Two_Springs/Akpatok_-_03_-_Tree_and_Wind.mp3");
     playlist[_songName] = myaudio;
-    musicName[_songName] = "<b>" + songArray.artistName[_songName] + "</b> " + songArray.songName[_songName];
-    //console.log(songArray.songListenUrl[_songName]);
-    //console.log(myaudio);
-    //myaudio.play();
+    musicName[_songName] = "<b>" + songArray.artistName[_songName+num] + "</b> " + songArray.songName[_songName+num];
 }
         playerOptions(playlist, musicName, trackNum);
 }
@@ -63,8 +46,6 @@ var btn = document.getElementById("btn"),
     };
 
     var size = Object.size(musicName);
-    //console.log(musicName);
-    //console.log(size);
     for (var x = 0; x < size; x++) {
         var li = document.createElement("li"),
             qaz = x+1;
@@ -74,10 +55,8 @@ var btn = document.getElementById("btn"),
 
 // Play music function and change play btn name
     function playMusic() {
-        //console.log(playlist[trackNum]);
         switch (playlist[trackNum].paused) {
             case true:
-                //console.log(1);
                 console.log(trackNum);
                 playlist[trackNum].play();
                 nameField.innerHTML = musicName[trackNum];
@@ -94,7 +73,6 @@ var btn = document.getElementById("btn"),
                 setInterval(setTimeOfEnd, 3000);
                 break;
             default:
-                //console.log(2);
                 playlist[trackNum].pause();
                 btn.firstChild.className = "glyphicon glyphicon-play";
                 break;
