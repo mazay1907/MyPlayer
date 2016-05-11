@@ -2,19 +2,22 @@
  * Created by mazay1907 on 3/25/2016.
  */
 
-function addPlaylist(songArray) {
+function addPlaylist() {
 var trackNum = 0,
-    num = Math.floor((Math.random() * songArray.songListenUrl.length-10) + 1),
+    //num = Math.floor((Math.random() * songArray.songListenUrl.length-10) + 1),
+    num = 0,
+    songs = JSON.parse(localStorage.itemsArray),
     musicArr = {
         playlist : [],
         musicName : [],
         albumImage : []
     };
-
 for (var _songName = 0; _songName < 10; _songName++){
-    var myaudio = new Audio(songArray.songListenUrl[_songName]);
+    //var myaudio = new Audio(songArray.songListenUrl[_songName]);
+    var myaudio = new Audio(songs.songListenUrl[_songName]);
     musicArr.playlist[_songName] = myaudio;
-    musicArr.musicName[_songName] = "<b>" + songArray.artistName[_songName+num] + " -</b> " + songArray.songName[_songName+num];
+    //musicArr.musicName[_songName] = "<b>" + songArray.artistName[_songName+num] + " -</b> " + songArray.songName[_songName+num];
+    musicArr.musicName[_songName] = "<b>" + songs.artistName[_songName+num] + " -</b> " + songs.songName[_songName+num];
     //musicArr.albumImage[_songName] = songArray.albumImageFile[_songName+num]
 }
     playerOptions(musicArr, trackNum);
